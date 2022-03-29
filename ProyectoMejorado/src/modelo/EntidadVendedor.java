@@ -1,4 +1,4 @@
-
+//Se usa en login
 package modelo;
 
 public class EntidadVendedor {

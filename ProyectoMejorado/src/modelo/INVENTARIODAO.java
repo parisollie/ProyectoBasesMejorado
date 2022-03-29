@@ -1,4 +1,4 @@
-//Se usa
+//Se usa y listo
 // Clases para buscar los Id
 package modelo;
 
@@ -68,57 +68,16 @@ public class INVENTARIODAO implements CRUD {
         }
         return r;
     }
-
-    public int GuardarVentas(Inv v) {
-        String sql = "insert into inventario(CB, IdPro,PreCom,PreVen,Fecha,Stock)values(?,?,?,?,?,?)";
-        try {
-            con = cn.Conectar();
-            ps = con.prepareStatement(sql);//Lo conectamos con la consulta sql
-            ps.setInt(1, v.getCod());
-            ps.setInt(2, v.getIp());
-            ps.setDouble(3, v.getPc());
-            ps.setDouble(4, v.getPl());
-            ps.setString(5, v.getFecha());
-            ps.setInt(6, v.getStock());
-            r = ps.executeUpdate();
-
-        } catch (Exception e) {
-        }
-        return r;//Retornamos la respuesta
-    }
-
-    @Override
+    
+    
+     @Override
     public int actualizar(Object[] o) {
-        int r = 0;
-        String sql = "update inventario set CB=?,IdPro=?,PreCom=?,PreVen=?,Fecha=?,Stock=? where IDI=?";
-        //String sql = "update cliente set Dni=?,Rs=?,Nombres=?,EdoCliente=?,ColCliente=?,CalleCliente=?,CpCliente=?,EmailCliente=? where IdCliente=?";//IdCliente=? ,que cliente borraremos
-        try {
-            con = cn.Conectar();
-            ps = con.prepareStatement(sql);//la consulta sql
-            ps.setObject(1, o[0]);//Enviamos los datos posicion 0
-            ps.setObject(2, o[1]);
-            ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
-            ps.setObject(5, o[4]);
-            ps.setObject(6, o[5]);
-            ps.setObject(7, o[6]);
-
-            r = ps.executeUpdate();//actualizar
-        } catch (Exception e) {
-        }
-        return r;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void eliminar(int id) {
-        String sql = "delete from inventario where IDI=?";//Recibimos todo el objeto
-        try {
-            con = cn.Conectar();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

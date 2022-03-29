@@ -1,4 +1,4 @@
-//Se usa
+//Se usa y listo
 package modelo;
 
 import java.sql.Connection;

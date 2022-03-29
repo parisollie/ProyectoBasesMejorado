@@ -1,4 +1,4 @@
-
+//Se usa
 package modelo;
 
 public class Vendedor {

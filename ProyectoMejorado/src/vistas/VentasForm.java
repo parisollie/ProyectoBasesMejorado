@@ -536,8 +536,9 @@ public class VentasForm extends javax.swing.JInternalFrame {
         ResultSet rs = null;
         String sql = "select idventa as idventa from venta order by idventa desc limit 1";
         try {
-            String ruta = "C:\\Users\\hasti\\Desktop\\ProyectoMejorado"; //Adaptar para la máquina en que se use
-            String rutaImagen = "C:\\Users\\hasti\\Desktop\\ProyectoMejorado\\src\\Img\\EncabezadoFactura.jpg";
+            
+            String ruta = "C:\\Users\\hasti\\Desktop\\ESCOMCU\\Todo\\ProyectoBasesMejorado"; //Adaptar para la máquina en que se use
+            String rutaImagen = "C:\\Users\\hasti\\Desktop\\ESCOMCU\\Todo\\ProyectoBasesMejorado\\ProyectoMejorado\\src\\Img\\EncabezadoFactura.jpg";
             con = cn.Conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();

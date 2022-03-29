@@ -1,4 +1,4 @@
-//Se usa
+//Se usa y listo
 package modelo;
 
 import java.sql.Connection;
@@ -71,10 +71,10 @@ public class ClienteDAO implements CRUD {
         }
         return c;// Retornamos al obejto
     }
+     
     
-    
-    
-    //Se usa en cliente.
+
+//Se usa en cliente.
     //Metodo para generar el id vendedor
     public String IdCliente(){
         String idv="";

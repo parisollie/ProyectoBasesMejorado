@@ -15,7 +15,7 @@ public class VendedorDAO {
     
     Conexion acceso=new Conexion();
     Connection con;
-    
+    //Se usa en login
     public EntidadVendedor ValidarVendedor(String dni,String user){//recibe de parametro dni y user
         EntidadVendedor ev=new EntidadVendedor();
         //"SELECT * FROM vendedor WHERE Dni LIKE? and User LIKE?"
@@ -39,27 +39,6 @@ public class VendedorDAO {
         } catch (Exception e) {
         }
         return ev;//retornamos la entidad vendedor
-    }
-    public Vendedor listarIDs(int id){
-        Vendedor p=new Vendedor();
-        String sql="select * from vendedor where IdVendedor=?" + id;
-        try {
-            con=acceso.Conectar();// Conectamos la base
-            ps=con.prepareStatement(sql);// Consultamos con la base de datos
-            ps.setInt(1, id);// 1 es la columna de nuestra base datos producto
-            rs=ps.executeQuery();
-            while (rs.next()) { //Recorremos toda la tabla
-                
-                p.setId(rs.getInt(1));
-                p.setDni(rs.getString(2));
-                p.setNom(rs.getString(3));
-                p.setTel(rs.getString(4));
-                p.setEstado(rs.getString(5));
-                p.setUser(rs.getString(6));
-            }
-        } catch (Exception e) {
-        }
-        return p;//retornamos al objeto producto
     }
     
     //Se usa en VendedorForm
@@ -171,38 +150,7 @@ public class VendedorDAO {
         }
         return r;
     }
-    //Se usa
-    //Metodo para actualziar inventario
-    public int actualizarIn(Inv in) {
-        
-        int r=0;
-        String sql = "update inventario set CB =?,IdPro=?,PreCom=?,PreVen=?,Fecha=?,Stock=? where IDI=?";//IdCliente=? ,que cliente actuliazaremos
-        try {
-            con = acceso.Conectar();
-            ps = con.prepareStatement(sql);
-            
-            ps.setInt(1, in.getCod());
-            ps.setInt(2, in.getIp());
-            
-            ps.setDouble(3, in.getPc());
-            ps.setDouble(4, in.getPl());
-            
-            ps.setString(5, in.getFecha());
-            ps.setInt(6, in.getStock());
-            
-            ps.setInt(7, in.getIdc()); // Se agrega uno mas
-            r = ps.executeUpdate();
-            if (r == 1) {
-                r = 1;
-            } else {
-                r = 0;
-            }
-        } catch (Exception e) {
-            System.err.println("" + e);
-        }
-        return r;
-    }
-
+    
     //Se usa en VendedorForm
     public int delete(int id) {
         int r=0;
@@ -216,15 +164,5 @@ public class VendedorDAO {
         }
         return r;
     }
-    
-    public void eliminar(int id) {
-         String sql="delete from venta where IdVenta=?";//Recibimos todo el objeto
-        try {
-            con=acceso.Conectar();
-            ps=con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
+   
 }

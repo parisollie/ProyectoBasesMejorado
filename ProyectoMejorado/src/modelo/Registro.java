@@ -1,4 +1,4 @@
-
+//Se usa en reform
 package modelo;
 
 public class Registro {

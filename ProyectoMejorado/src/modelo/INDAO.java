@@ -1,4 +1,4 @@
-//Se usa
+//Se usa y listo
 package modelo;
 
 import java.sql.Connection;
@@ -51,38 +51,7 @@ public class INDAO {
         return p;//retornamos al objeto producto
     }
     
-    //Metodo para generar el id ventas
-    public String IdVentas(){
-        String idv="";
-        String sql="select max(IdVentas) from ventas";// Max es para saber el maximo que tenemos en IdVentas
-        try {
-            con=cn.Conectar();
-            ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();// Consultamos la base de datos
-            while (rs.next()) {
-                idv=rs.getString(1);//idventas en la posicion 1
-            }
-        } catch (Exception e) {
-        }
-        return idv;//Retornamos el id ventas
-    }
-    public int GuardarVentas(Inv v){       
-        String sql="insert into inventario(CB, IdPro,PreCom,PreVen,Fecha,Stock)values(?,?,?,?,?,?)";
-        try {
-            con=cn.Conectar();
-            ps=con.prepareStatement(sql);//Lo conectamos con la consulta sql
-            ps.setInt(1, v.getCod());
-            ps.setInt(2, v.getIp());
-            ps.setDouble(3, v.getPc());
-            ps.setDouble(4, v.getPl());
-            ps.setString(5, v.getFecha());
-            ps.setInt(6, v.getStock());
-            r=ps.executeUpdate();
-            
-        } catch (Exception e) {
-        }
-         return r;//Retornamos la respuesta
-    }
+    
     //Se usa en InventarioForm
     public int actualizar(Inv in) {
         //String sql = "update producto set Nombres=?,Precio=?,Stock=?,Estado=? where IdProducto=?";
@@ -144,27 +113,8 @@ public class INDAO {
         }
         return r;
     }
+    
      
-     public int actualizarReg2(RV in) {
-        //String sql = "update producto set Nombres=?,Precio=?,Stock=?,Estado=? where IdProducto=?";
-         String sql = "update registrar set CodBarras=?,IdVentas=?,PrecioVenta=?,Cantidad=?,Pago=? where IdRegistro=?";
-        try {
-            con = cn.Conectar();
-            ps = con.prepareStatement(sql);
-            
-            ps.setInt(1, in.getCod());
-            ps.setInt(2, in.getIdv());
-            ps.setDouble(3, in.getPv());
-            ps.setInt(4, in.getCan());
-            ps.setDouble(5, in.getTot());
-            ps.setInt(6, in.getReg());
-
-            r=ps.executeUpdate();
-            
-        } catch (Exception e) {
-        }
-        return r;
-    }
     //Se usa en InventarioForm
     public void eliminar(int id) {
          String sql="delete from inventario where IDI=?";//Recibimos todo el objeto
@@ -176,20 +126,9 @@ public class INDAO {
         } catch (Exception e) {
         }
     }
+   
     
-    public void eliminarRegPag(int id) {
-         String sql="delete from registrar where IdRegistro=?";//Recibimos todo el objeto
-        try {
-            con=cn.Conectar();
-            ps=con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-    
-    
-    
+    //Se usa en Reform
     public void eliminarReg(int id) {
          String sql="delete from registrarpago where IdReg=?";//Recibimos todo el objeto
         try {
@@ -200,6 +139,7 @@ public class INDAO {
         } catch (Exception e) {
         }
     }
+   
     //Se usa en VentasForm
     public void eliminarVen(int id) {
          String sql="delete from venta where IdVenta=?";//Recibimos todo el objeto
