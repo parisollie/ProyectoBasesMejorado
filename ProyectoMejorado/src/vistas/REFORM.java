@@ -262,7 +262,7 @@ public class REFORM extends javax.swing.JInternalFrame {
         });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cancelar.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("ELIMINAR");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -270,7 +270,7 @@ public class REFORM extends javax.swing.JInternalFrame {
         });
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vendedor.png"))); // NOI18N
-        btnAgregar.setText("GENERAR");
+        btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -374,7 +374,7 @@ public class REFORM extends javax.swing.JInternalFrame {
         } else {
             int id = Integer.parseInt(TablaDetalle.getValueAt(fila, 0).toString());
             indao.eliminarReg(id);
-            JOptionPane.showMessageDialog(this, "Se ha eliminado");
+            JOptionPane.showMessageDialog(this, "Se ha eliminado el registro");
         }
         nuevo();
         listar();
@@ -416,7 +416,7 @@ public class REFORM extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         add();
-        JOptionPane.showMessageDialog(this, "Se Realizo con Exito");
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         nuevo();
         listar();
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -432,7 +432,7 @@ public class REFORM extends javax.swing.JInternalFrame {
                 txtFecha.setText(ven.getFeha());
                 
             } else {
-                JOptionPane.showMessageDialog(this, "IdVenta No registrado");
+                JOptionPane.showMessageDialog(this, "IdVenta no registrado");
                 txtId.requestFocus();
             }
         }
@@ -441,7 +441,7 @@ public class REFORM extends javax.swing.JInternalFrame {
     void actualizar() {
         int fila = TablaDetalle.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Debe selecionar una Fila");
+            JOptionPane.showMessageDialog(this, "Debe selecionar una fila");
         } else {
             //Solo elegimos el id,porque es el unico que no puede cambiar,por
             //eso el id tiene otra forma al de los demas int

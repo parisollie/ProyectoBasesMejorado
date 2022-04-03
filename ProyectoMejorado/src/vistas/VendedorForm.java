@@ -130,7 +130,7 @@ public class VendedorForm extends javax.swing.JInternalFrame {
         jLabel4.setText("ESTADO");
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/enter.png"))); // NOI18N
-        btnModificar.setText("Modificar");
+        btnModificar.setText("Actualizar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
@@ -270,6 +270,7 @@ public class VendedorForm extends javax.swing.JInternalFrame {
         ven.setEstado(estado);
         ven.setUser(user);
         venDao.agregar(ven);
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         LimpiarTabla();
         listarVendedor();
         nuevo();
@@ -286,7 +287,7 @@ public class VendedorForm extends javax.swing.JInternalFrame {
         } else {
             int id = Integer.parseInt(tablaVendedor.getValueAt(fila, 0).toString());
             venDao.delete(id);
-            JOptionPane.showMessageDialog(this, "Vendedor Eliminado");
+            JOptionPane.showMessageDialog(this, "Se elimino el registro!");
         }
         LimpiarTabla();
         listarVendedor();
@@ -317,10 +318,10 @@ public class VendedorForm extends javax.swing.JInternalFrame {
             ven.setId(id);
             r=venDao.actualizar(ven);
             if(r==1){
-                JOptionPane.showMessageDialog(this, "Usuario Actualizado con Exito..!!");
+                JOptionPane.showMessageDialog(this, "Se actualizo con exito!");
             }
             else{
-                JOptionPane.showMessageDialog(this, "Error");
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error");
             }
             LimpiarTabla();
             listarVendedor();

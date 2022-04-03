@@ -297,6 +297,7 @@ public class ProveForma extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregar();
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         guardarDetalleTel();
         limpiarTabla();
         listar();
@@ -306,6 +307,7 @@ public class ProveForma extends javax.swing.JInternalFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
+        JOptionPane.showMessageDialog(this, "Se actualizo con exito!");
         limpiarTabla();
         listar();
         nuevo();
@@ -314,6 +316,7 @@ public class ProveForma extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         eliminar();
+        JOptionPane.showMessageDialog(this, "Se ha eliminado el registro!");
         limpiarTabla();
         listar();
         nuevo();

@@ -373,7 +373,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         } else {
             int id = Integer.parseInt(TablaDetalle.getValueAt(fila, 0).toString());
             prodDao.eliminar(id);
-            JOptionPane.showMessageDialog(this, "Se ha eliminado");
+            JOptionPane.showMessageDialog(this, "Se ha eliminado el registro!");
         }
         limpiarTabla();
         listar();
@@ -434,7 +434,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
     private void GENERARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERARActionPerformed
         // TODO add your handling code here:
         add();
-        JOptionPane.showMessageDialog(this, "Se Realizo con Exito");
+        JOptionPane.showMessageDialog(this, "Se realizo con exito");
         limpiarTabla();
         listar();
         nuevo();

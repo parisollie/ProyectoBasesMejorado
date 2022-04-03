@@ -129,7 +129,7 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
         });
 
         btnagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vendedor.png"))); // NOI18N
-        btnagregar.setText("ADD");
+        btnagregar.setText("AGREGAR");
         btnagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnagregarActionPerformed(evt);
@@ -137,7 +137,7 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
         });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cancelar.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("ELIMINAR");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -390,7 +390,7 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
         } else {
             add();
             actualizarStock();
-            JOptionPane.showMessageDialog(this, "Se Realizo con Exito");
+            JOptionPane.showMessageDialog(this, "Se ha generado la venta!");
             nuevo();
             limpiarTabla();
         }
@@ -419,11 +419,12 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
 
         agregarProducto();
+        JOptionPane.showMessageDialog(this, "Se ha agregado a la tabla!");
         calculatTotal();
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        JOptionPane.showMessageDialog(this, "Se han eliminados los registros!");
         limpiarTabla();
         nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed

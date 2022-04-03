@@ -199,7 +199,7 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
          int fila = tabla.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
         } else {
             id = Integer.parseInt(tabla.getValueAt(fila, 0).toString());
             
@@ -213,6 +213,7 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregar();
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         limpiarTabla();
         listar();
         nuevo();
@@ -220,6 +221,7 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         eliminar();
+        JOptionPane.showMessageDialog(this, "Se elimino el registro!");
         limpiarTabla();
         listar();
         nuevo();
@@ -231,6 +233,7 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         actualizar();
+        JOptionPane.showMessageDialog(this, "Se actualizo con exito!");
         limpiarTabla();
         listar();
         nuevo();

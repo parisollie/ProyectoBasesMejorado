@@ -447,7 +447,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
 
         add();
-        JOptionPane.showMessageDialog(this, "Se Realizo con Exito");
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         limpiarTabla();
         nuevo();
         listar();
@@ -493,7 +493,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
         } else {
             int id = Integer.parseInt(TablaDetalle.getValueAt(fila, 0).toString());
             indao.eliminarVen(id);
-            JOptionPane.showMessageDialog(this, "Se ha eliminado");
+            JOptionPane.showMessageDialog(this, "Se ha eliminado el registro!");
         }
         nuevo();
         listar();
@@ -558,7 +558,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
             documento.add(imagen);
             documento.add(new Paragraph(contenido1));
             documento.close();
-            JOptionPane.showMessageDialog(null, "PDF creado");
+            JOptionPane.showMessageDialog(null, "Se ha generado el PDF!");
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
@@ -586,7 +586,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
             r = indao.actualizarventas(ventas);
 
             if (r == 1) {
-                JOptionPane.showMessageDialog(this, "Venta actualizada con exito!");
+                JOptionPane.showMessageDialog(this, "Se actualizo con exito!");
             } else {
                 JOptionPane.showMessageDialog(this, "Error");
             }

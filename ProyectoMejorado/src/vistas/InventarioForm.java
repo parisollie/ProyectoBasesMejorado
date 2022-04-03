@@ -458,7 +458,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
         } else {
             int id = Integer.parseInt(TablaDetalle.getValueAt(fila, 0).toString());
             indao.eliminar(id);
-            JOptionPane.showMessageDialog(this, "Se ha eliminado");
+            JOptionPane.showMessageDialog(this, "Se ha eliminado el registro!");
         }
         //limpiarTabla();
         nuevo();
@@ -493,7 +493,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
     private void GENERARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERARActionPerformed
         // TODO add your handling code here:
         add();
-        JOptionPane.showMessageDialog(this, "Se Realizo con Exito");
+        JOptionPane.showMessageDialog(this, "Se realizo con exito!");
         nuevo();
         listar();
 
@@ -504,7 +504,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int fila = TablaDetalle.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Debe Seleccionar una Fila");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila");
         } else {
 
             String cb = TablaDetalle.getValueAt(fila, 1).toString();
@@ -537,6 +537,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
     private void GENERAR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERAR2ActionPerformed
         // TODO add your handling code here:
         actualizar();
+        JOptionPane.showMessageDialog(this, "Se actualizo con exito!");
         limpiarTabla();
         nuevo();
         listar();
@@ -587,7 +588,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
     void actualizar() {
         int fila = TablaDetalle.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Debe selecionar una Fila");
+            JOptionPane.showMessageDialog(this, "Debe selecionar una fila");
         } else {
             //Solo elegimos el id,porque es el unico que no puede cambiar,por
             //eso el id tiene otra forma al de los demas int
