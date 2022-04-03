@@ -1,5 +1,5 @@
 //Se usa y listo
-// Clases para buscar los Id
+
 package modelo;
 
 import java.sql.Connection;
@@ -7,8 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-//Metódo para mantenimiento dentro de nuestra base de datos
 
+//Metódo para mantenimiento dentro de nuestra base de datos
 public class INVENTARIODAO implements CRUD {
 
     Connection con;
@@ -16,14 +16,13 @@ public class INVENTARIODAO implements CRUD {
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
-    //Cliente co=new Cliente();
     int r = 0;
    //Se usa en InventarioForm
     @Override
     public List listar() {
 
         List<Inv> lista = new ArrayList<>();
-        String sql = "select * from inventario";//Consulra para cliente
+        String sql = "select * from inventario";
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);//Consulta sql
@@ -38,21 +37,21 @@ public class INVENTARIODAO implements CRUD {
                 c.setPl(rs.getDouble(5));
                 c.setFecha(rs.getString(6));
                 c.setStock(rs.getInt(7));
-                lista.add(c);//los agregamos dentro de la lists con e parametro c ...clientes
+                //los agregamos dentro de la lista con e parametro c ...clientes
+                lista.add(c);
             }
         } catch (Exception e) {
 
         }
         return lista;
     }
-    //Agregamos a producto en bases
+    //Agregamos dentro de inventtario en nuestra base
     //Se usa en InventarioForm
     @Override
     public int add(Object[] o) {
         int r = 0;
         String sql = "insert into inventario(CB, IdPro,PreCom,PreVen,Fecha,Stock)values(?,?,?,?,?,?)";
-        //String sql = "insert into producto(IdCategoria,IdProv,Marca,Descripcion,Precio)values(?,?,?,?,?)";
-
+    
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);//la consulta sql
@@ -62,8 +61,8 @@ public class INVENTARIODAO implements CRUD {
             ps.setObject(4, o[3]);
             ps.setObject(5, o[4]);
             ps.setObject(6, o[5]);
-
-            r = ps.executeUpdate();//actualizar
+            //actualizar
+            r = ps.executeUpdate();
         } catch (Exception e) {
         }
         return r;

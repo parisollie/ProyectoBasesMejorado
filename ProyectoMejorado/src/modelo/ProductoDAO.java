@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-//Metódo para mantenimiento dentro de nuestra base de datos
 
+//Metódo para mantenimiento dentro de nuestra base de datos
 public class ProductoDAO implements CRUD {
 
     Connection con;
@@ -22,9 +22,9 @@ public class ProductoDAO implements CRUD {
     //Se usa en InventarioForm
     //Metódo para buscar al proveedor
     //public List listarID(){
-    public Producto listarID(int id) {// Necesitamos el Dni para buscar al cliente
+    public Producto listarID(int id) {
         Producto c = new Producto();
-        String sql = "select * from producto where IdProducto=?";// Buscamos  en la tabla cliente el Dni
+        String sql = "select * from producto where IdProducto=?";
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);
@@ -43,18 +43,18 @@ public class ProductoDAO implements CRUD {
             }
         } catch (Exception e) {
         }
-        return c;// Retornamos al obejto
+        return c;// Retornamos al obejeto
     }
 
     //Se usa en ProductoForm
     @Override
     public List listar() {
         List<Producto> lista = new ArrayList<>();
-        String sql = "select * from producto";//Consulra para cliente
+        String sql = "select * from producto";
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);//Consulta sql
-            rs = ps.executeQuery();//Ejecuta la onsulta
+            rs = ps.executeQuery();//Ejecuta la consulta
             while (rs.next()) {
                 Producto c = new Producto();
 
@@ -64,14 +64,13 @@ public class ProductoDAO implements CRUD {
                 c.setMarca(rs.getString(4));
                 c.setDescripcion(rs.getString(5));
                 c.setPrecio(rs.getDouble(6));
-                lista.add(c);//los agregamos dentro de la lists con e parametro c ...clientes
+                lista.add(c);
             }
         } catch (Exception e) {
 
         }
         return lista;
     }
-
 
     @Override
     public int actualizar(Object[] o) {
@@ -83,6 +82,7 @@ public class ProductoDAO implements CRUD {
 
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     //Se usa en ProductoForm
     @Override
     public void eliminar(int id) {

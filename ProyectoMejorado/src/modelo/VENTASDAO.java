@@ -18,10 +18,10 @@ public class VENTASDAO implements CRUD {
     //SE usa en RegisterForm
     //Se usa en REFORM
     //Metódo para buscar al proveedor
-    public Ventas listarID(int id){// Necesitamos el Dni para buscar al cliente
+    public Ventas listarID(int id){
         Ventas c=new Ventas();
         
-       String sql="select * from venta where IdVenta=?";// Buscamos  en la tabla cliente el Dni
+       String sql="select * from venta where IdVenta=?";
         try {
             con=cn.Conectar();
             ps=con.prepareStatement(sql);
@@ -38,7 +38,7 @@ public class VENTASDAO implements CRUD {
             }
         } catch (Exception e) {
         }
-        return c;// Retornamos al obejto
+        return c;// Retornamos al objeto
     }
     
    
@@ -47,11 +47,11 @@ public class VENTASDAO implements CRUD {
     @Override
     public List listar() {
         List<Ventas> lista = new ArrayList<>();
-        String sql = "select * from venta";//Consulra para cliente
+        String sql = "select * from venta";
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);//Consulta sql
-            rs = ps.executeQuery();//Ejecuta la onsulta
+            rs = ps.executeQuery();//Ejecuta la consulta
             
             while (rs.next()) {
                 Ventas c = new Ventas();
@@ -60,7 +60,7 @@ public class VENTASDAO implements CRUD {
                 c.setVendedor(rs.getInt(3));
                 c.setFeha(rs.getString(4));
                 
-                lista.add(c);//los agregamos dentro de la lists con e parametro c ...clientes
+                lista.add(c);
             }
         } catch (Exception e) {
         }

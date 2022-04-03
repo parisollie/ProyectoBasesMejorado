@@ -12,21 +12,21 @@ import modelo.VENTASDAO;
 
 public class REGISTERFORM extends javax.swing.JInternalFrame {
 
-    REGISTRODAO regdao = new REGISTRODAO();//si
-    Ventas ven = new Ventas();//si
-    VENTASDAO vendao = new VENTASDAO();//si
-    INDAO indao = new INDAO();//si
-    Inv inv = new Inv();//si
-    RVDAO rvdao = new RVDAO();//si
+    REGISTRODAO regdao = new REGISTRODAO();
+    Ventas ven = new Ventas();
+    VENTASDAO vendao = new VENTASDAO();
+    INDAO indao = new INDAO();
+    Inv inv = new Inv();
+    RVDAO rvdao = new RVDAO();
     
     DefaultTableModel modelo = new DefaultTableModel();
     
-    int idp;//si
-    double T;//si
-    int item;//si
-    int cant;//si
-    double pre;//si
-    double tpagar;//si
+    int idp;
+    double T;
+    int item;
+    int cant;
+    double pre;
+    double tpagar;
 
     public REGISTERFORM() {
 
@@ -119,12 +119,22 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
                 txtIdActionPerformed(evt);
             }
         });
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         txtCodProd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtCodProd.setForeground(new java.awt.Color(153, 0, 153));
         txtCodProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodProdActionPerformed(evt);
+            }
+        });
+        txtCodProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodProdKeyTyped(evt);
             }
         });
 
@@ -198,6 +208,11 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
 
         txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(153, 0, 153));
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add.png"))); // NOI18N
         btnNuevo.setText("NUEVO");
@@ -434,6 +449,33 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
         nuevo();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtCodProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodProdKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
     //Metodo agregar 2
     void add() {
 
@@ -456,12 +498,18 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
 
     //Se usa
     void actualizarStock() {
+        //Cantidad de productos agregados.
         for (int i = 0; i < modelo.getRowCount(); i++) {
             Inv pr = new Inv();
+            //Buscamos el lugar en el que se encuentra idproducto y su cantidad
             idp = Integer.parseInt(TablaDetalle.getValueAt(i, 1).toString());
             cant = Integer.parseInt(TablaDetalle.getValueAt(i, 4).toString());
+            // Listamos por id
             pr = indao.listarID(idp);
+            // Restamos la cantidad del stock que ya se le dio al cliente.
+            //stock actual
             int sa = pr.getStock() - cant;
+            // Actualizamos stock actual sera igual al id producto
             indao.actualizarStock(sa, idp);
         }
     }
@@ -508,12 +556,15 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
     //Se usa
     void buscarProducto() {
         int id = Integer.parseInt(txtCodProd.getText());
+        //Si la caja esta vacía
         if (txtCodProd.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar el codproducto");
         } else {
+            //Listamos el id que estamos recibiendo desde la caja de texto.
             inv = indao.listarID(id);
+            //Si el id es diferente de 0 continua con el proceso.
             if (inv.getIdc() != 0) {
-
+                //Se mostraran en la caja de texto a lado
                 txtPrecio.setText("" + inv.getPc());
                 txtStock.setText("" + inv.getStock());
             } else {
@@ -533,7 +584,7 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
 
         String nomp = txtCodProd.getText();
         pre = Double.parseDouble(txtPrecio.getText());
-        //cant = Integer.parseInt(txtCantidad.getValue().toString());
+        
         int cant = Integer.parseInt(txtCantidad.getText());
         int stock = Integer.parseInt(txtStock.getText());
 
@@ -570,6 +621,7 @@ public class REGISTERFORM extends javax.swing.JInternalFrame {
             pre = Double.parseDouble(TablaDetalle.getValueAt(i, 3).toString());
             tpagar = tpagar + (cant * pre);
         }
+         //Mandamos a la caja de texto el total
         txtTotalPagar.setText("" + tpagar + "0");
     }
 

@@ -182,12 +182,22 @@ public class InventarioForm extends javax.swing.JInternalFrame {
                 txtIdprovActionPerformed(evt);
             }
         });
+        txtIdprov.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdprovKeyTyped(evt);
+            }
+        });
 
         txtPC.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtPC.setForeground(new java.awt.Color(51, 51, 255));
         txtPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPCActionPerformed(evt);
+            }
+        });
+        txtPC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPCKeyTyped(evt);
             }
         });
 
@@ -217,12 +227,22 @@ public class InventarioForm extends javax.swing.JInternalFrame {
                 txtPVActionPerformed(evt);
             }
         });
+        txtPV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPVKeyTyped(evt);
+            }
+        });
 
         txtStock.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtStock.setForeground(new java.awt.Color(51, 51, 255));
         txtStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStockActionPerformed(evt);
+            }
+        });
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
             }
         });
 
@@ -234,6 +254,11 @@ public class InventarioForm extends javax.swing.JInternalFrame {
         txtCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCBActionPerformed(evt);
+            }
+        });
+        txtCB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCBKeyTyped(evt);
             }
         });
 
@@ -426,7 +451,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 698, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,7 +485,7 @@ public class InventarioForm extends javax.swing.JInternalFrame {
             indao.eliminar(id);
             JOptionPane.showMessageDialog(this, "Se ha eliminado el registro!");
         }
-        //limpiarTabla();
+        
         nuevo();
         listar();
 
@@ -543,6 +568,51 @@ public class InventarioForm extends javax.swing.JInternalFrame {
         listar();
 
     }//GEN-LAST:event_GENERAR2ActionPerformed
+
+    private void txtIdprovKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdprovKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdprovKeyTyped
+
+    private void txtCBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCBKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCBKeyTyped
+
+    private void txtPCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPCKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPCKeyTyped
+
+    private void txtPVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPVKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPVKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
     //Se usa
     void buscarProducto() {
         int id = Integer.parseInt(txtIdprov.getText());
@@ -564,7 +634,6 @@ public class InventarioForm extends javax.swing.JInternalFrame {
     //Metodo agregar 2
     void add() {
 
-        //int idv = 1;
         int codBAR = Integer.parseInt(txtCB.getText());
         int idprod = Integer.parseInt(txtIdprov.getText());
         pre = Double.parseDouble(txtPC.getText());

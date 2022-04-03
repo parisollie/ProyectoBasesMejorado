@@ -151,12 +151,22 @@ public class REFORM extends javax.swing.JInternalFrame {
                 txtIdActionPerformed(evt);
             }
         });
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
 
         txtT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtT.setForeground(new java.awt.Color(102, 102, 255));
         txtT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTActionPerformed(evt);
+            }
+        });
+        txtT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTKeyTyped(evt);
             }
         });
 
@@ -167,12 +177,22 @@ public class REFORM extends javax.swing.JInternalFrame {
                 txtSbActionPerformed(evt);
             }
         });
+        txtSb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSbKeyTyped(evt);
+            }
+        });
 
         txtIva.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtIva.setForeground(new java.awt.Color(102, 102, 255));
         txtIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIvaActionPerformed(evt);
+            }
+        });
+        txtIva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIvaKeyTyped(evt);
             }
         });
 
@@ -420,6 +440,42 @@ public class REFORM extends javax.swing.JInternalFrame {
         nuevo();
         listar();
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtSbKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSbKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSbKeyTyped
+
+    private void txtTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTKeyTyped
+
+    private void txtIvaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIvaKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIvaKeyTyped
    //Se usa
     //Buscamos IdVenda
     void buscarIdVenta() {
@@ -428,7 +484,7 @@ public class REFORM extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar el IdVenta");
         } else {
             ven  = ventasDao.listarID(id);
-            if (ven .getVn() != 0) {//p=proveedor 
+            if (ven .getVn() != 0) { 
                 txtFecha.setText(ven.getFeha());
                 
             } else {

@@ -27,10 +27,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
 
-    //int id;
-    //int cats;
     int r;
-    //int item;
     double pre;
 
     //Es lo que veremos al principio de la pagina
@@ -105,6 +102,17 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 txtIdProvActionPerformed(evt);
             }
         });
+        txtIdProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdProvKeyTyped(evt);
+            }
+        });
+
+        txtIdCat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdCatKeyTyped(evt);
+            }
+        });
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/enter.png"))); // NOI18N
         btnActualizar.setText("ACTUALIZAR");
@@ -136,6 +144,12 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Categoría:");
 
+        txtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMarcaKeyTyped(evt);
+            }
+        });
+
         txtprov.setEditable(false);
         txtprov.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -149,12 +163,22 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 txtPrecioActionPerformed(evt);
             }
         });
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
         jLabel11.setText("Descripción:");
 
         txtDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDesActionPerformed(evt);
+            }
+        });
+        txtDes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDesKeyTyped(evt);
             }
         });
 
@@ -439,6 +463,51 @@ public class ProductForm extends javax.swing.JInternalFrame {
         listar();
         nuevo();
     }//GEN-LAST:event_GENERARActionPerformed
+
+    private void txtIdProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdProvKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdProvKeyTyped
+
+    private void txtIdCatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdCatKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdCatKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMarcaKeyTyped
+
+    private void txtDesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDesKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDesKeyTyped
     //Se usa
     //Metódo buscando id proveedor
     void buscarProveedor() {

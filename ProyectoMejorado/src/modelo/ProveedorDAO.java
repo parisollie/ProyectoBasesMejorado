@@ -17,9 +17,9 @@ public class ProveedorDAO implements CRUD {
     int r=0;
     //Se usa en ProductoForm
     //Metódo para buscar al proveedor
-    public Proveedor listarID(int id){// Necesitamos el Dni para buscar al cliente
+    public Proveedor listarID(int id){
         Proveedor c=new Proveedor();
-       String sql="select * from proveedor where IdProv=?";// Buscamos  en la tabla cliente el Dni
+       String sql="select * from proveedor where IdProv=?";
         try {
             con=cn.Conectar();
             ps=con.prepareStatement(sql);
@@ -39,20 +39,21 @@ public class ProveedorDAO implements CRUD {
             }
         } catch (Exception e) {
         }
-        return c;// Retornamos al obejto
+        return c;// Retornamos al objeto
     }
     
     //Se usa en ProveForma
     //Metodo para generar el id vendedor
     public String IdProveedor(){
         String idv="";
-        String sql="select max(IdProv) from proveedor";// Max es para saber el maximo que tenemos en IdClientes
+        // Max es para saber el maximo que tenemos en IdProv
+        String sql="select max(IdProv) from proveedor";
         try {
             con=cn.Conectar();
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();// Consultamos la base de datos
             while (rs.next()) {
-                idv=rs.getString(1);//idventas en la posicion 1
+                idv=rs.getString(1);//idprov en la posicion 1
             }
         } catch (Exception e) {
         }
@@ -64,7 +65,7 @@ public class ProveedorDAO implements CRUD {
         String sql="insert into telpro(TelProv,IdProv)values(?,?)";
         try {
             con=cn.Conectar();
-            ps=con.prepareStatement(sql);//Otenemos los datos de la base
+            ps=con.prepareStatement(sql);//Obtenemos los datos de la base
             ps.setString(1, dv.getTel());
             ps.setInt(2, dv.getId());
             ps.executeUpdate();
@@ -77,11 +78,11 @@ public class ProveedorDAO implements CRUD {
     @Override
     public List listar() {
         List<Proveedor> lista = new ArrayList<>();
-        String sql = "select * from proveedor";//Consulra para cliente
+        String sql = "select * from proveedor";//Consulta para cliente
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);//Consulta sql
-            rs = ps.executeQuery();//Ejecuta la onsulta
+            rs = ps.executeQuery();//Ejecuta la consulta
             
             while (rs.next()) {
                 Proveedor c = new Proveedor();
@@ -94,7 +95,7 @@ public class ProveedorDAO implements CRUD {
                 c.setCalle(rs.getString(6));
                 c.setCp(rs.getString(7));
                 c.setTel(rs.getString(8));
-                lista.add(c);//los agregamos dentro de la lists con e parametro c ...clientes
+                lista.add(c);
             }
         } catch (Exception e) {
         }

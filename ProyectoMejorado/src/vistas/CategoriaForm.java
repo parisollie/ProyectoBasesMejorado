@@ -127,6 +127,11 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
 
         txtNom.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtNom.setForeground(new java.awt.Color(102, 102, 255));
+        txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("NOMBRE:");
 
@@ -238,6 +243,15 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
         listar();
         nuevo();
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void txtNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNomKeyTyped
     //Se usa
     void agregar() {
         

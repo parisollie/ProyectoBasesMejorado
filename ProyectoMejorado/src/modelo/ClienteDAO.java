@@ -1,4 +1,9 @@
-//Se usa y listo
+
+/******************************************************************************
+  Se usa y esta bien comentado, es el la guia de todos los demas de como
+   funciona la logica en los que terminan con DAO
+  ***************************************************************************** 
+*/
 package modelo;
 
 import java.sql.Connection;
@@ -6,28 +11,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-//Metódo para mantenimiento dentro de nuestra base de datos
+//Metódo para el mantenimiento dentro de nuestra base de datos.
+//Le pasamos los metodos que creamos en CRUD
 public class ClienteDAO implements CRUD {
      
     Connection con;
-     
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     Cliente co=new Cliente();
     int r=0;
     
-    //Metódo para uscar al cliente
-    public Cliente listarID(String dni){// Necesitamos el Dni para buscar al cliente
+    //Metódo para buscar al cliente
+    //Necesitamos el Dni para buscar al cliente en nuestra base.
+    public Cliente listarID(String dni){
         Cliente c=new Cliente();
-       String sql="select * from cliente where Dni=?";// Buscamos  en la tabla cliente el Dni
+        //Buscamos  en la tabla cliente el Dni ,desde la base.
+        //Le mandamos la consulta sql
+       String sql="select * from cliente where Dni=?";
         try {
+            // Conectamos con la base
             con=cn.Conectar();
+            //Le pasamos la consulta sql
             ps=con.prepareStatement(sql);
             ps.setString(1, dni);
-           
-            rs=ps.executeQuery();// ejecutamos la consulta
-            while (rs.next()) { // Para ir buscando
+           //Ejecutamos la consulta
+            rs=ps.executeQuery();
+            //Para ir buscando dentro de la base
+            while (rs.next()) { 
                 
                 c.setId(rs.getInt(1));
                 c.setDni(rs.getInt(2));
@@ -38,24 +49,29 @@ public class ClienteDAO implements CRUD {
                 c.setCallecliente(rs.getString(7));
                 c.setCp(rs.getString(8));
                 c.setEmail(rs.getString(9));
-                
             }
         } catch (Exception e) {
         }
-        return c;// Retornamos al obejto
+        // Retornamos al obejeto
+        return c;
     }
     //Se usa en VentasForm
-    public Cliente listarIDs(int id){// Necesitamos el Dni para buscar al cliente
+    // Necesitamos el Dni para buscar al cliente
+    public Cliente listarIDs(int id){
         Cliente c=new Cliente();
-       String sql="select * from cliente where IdCliente=?";// Buscamos  en la tabla cliente el Dni
+        //Mandamos la consulta sql
+        // Buscamos  en la tabla cliente el Dni
+       String sql="select * from cliente where IdCliente=?";
         try {
+            //Conectamos con la base
             con=cn.Conectar();
+            //Le pasamos la consulta sql
             ps=con.prepareStatement(sql);
             ps.setInt(1, id);
-           
-            rs=ps.executeQuery();// ejecutamos la consulta
-            while (rs.next()) { // Para ir buscando
-                
+            //Ejecutamos la consulta
+            rs=ps.executeQuery();
+            // Para ir buscando
+            while (rs.next()) { 
                 c.setId(rs.getInt(1));
                 c.setDni(rs.getInt(2));
                 c.setRs(rs.getString(3));
@@ -64,45 +80,51 @@ public class ClienteDAO implements CRUD {
                 c.setColcliente(rs.getString(6));
                 c.setCallecliente(rs.getString(7));
                 c.setCp(rs.getString(8));
-                c.setEmail(rs.getString(9));
-                
+                c.setEmail(rs.getString(9));  
             }
         } catch (Exception e) {
         }
-        return c;// Retornamos al obejto
+        // Retornamos al objeto
+        return c;
     }
      
-    
-
-//Se usa en cliente.
+    //Se usa en cliente.
     //Metodo para generar el id vendedor
     public String IdCliente(){
         String idv="";
-        String sql="select max(IdCliente) from cliente";// Max es para saber el maximo que tenemos en IdClientes
+        // Max es para saber el maximo que tenemos en IdClientes
+        String sql="select max(IdCliente) from cliente";
         try {
+            // Conectamos con la base
             con=cn.Conectar();
+            //Le pasamos la consulta sql
             ps=con.prepareStatement(sql);
-            rs=ps.executeQuery();// Consultamos la base de datos
+           //Ejecutamos la consulta
+            rs=ps.executeQuery();
             while (rs.next()) {
-                idv=rs.getString(1);//idventas en la posicion 1
+                //idventas en la posicion 1
+                idv=rs.getString(1);
             }
         } catch (Exception e) {
         }
-        return idv;//Retornamos el id ventas
+        //Retornamos el id ventas
+        return idv;
     }
-    
-    
     
     //Metodos de Mantenimiento CRUD
     //Se usa en cliente.
     @Override
     public List listar() {
         List<Cliente> lista = new ArrayList<>();
-        String sql = "select * from cliente";//Consulra para cliente
+         //Le mandamos la consulta sql
+        String sql = "select * from cliente";
         try {
-            con = cn.Conectar();
-            ps = con.prepareStatement(sql);//Consulta sql
-            rs = ps.executeQuery();//Ejecuta la onsulta
+            // Conectamos con la base
+            con=cn.Conectar();
+            //Le pasamos la consulta sql
+            ps=con.prepareStatement(sql);
+           //Ejecutamos la consulta
+            rs=ps.executeQuery();
             while (rs.next()) {
                 Cliente c = new Cliente();
                 
@@ -115,7 +137,8 @@ public class ClienteDAO implements CRUD {
                 c.setCallecliente(rs.getString(7));
                 c.setCp(rs.getString(8));
                 c.setEmail(rs.getString(9));
-                lista.add(c);//los agregamos dentro de la lists con e parametro c ...clientes
+                //Los agregamos dentro de la lists con e parametro c ...clientes
+                lista.add(c);
             }
         } catch (Exception e) {
         }
@@ -126,8 +149,10 @@ public class ClienteDAO implements CRUD {
     public int GuardarDetalleEmail(Email dv){
         String sql="insert into email(Email,IdCliente)values(?,?)";
         try {
+            // Conectamos con la base
             con=cn.Conectar();
-            ps=con.prepareStatement(sql);//Otenemos los datos de la base
+            //Le pasamos la consulta sql
+            ps=con.prepareStatement(sql);
             ps.setString(1, dv.getEmail());
             ps.setInt(2, dv.getId());
             ps.executeUpdate();
@@ -137,14 +162,18 @@ public class ClienteDAO implements CRUD {
     }
     //Se usa en cliente.
     @Override
-    public int add(Object[] o) {   //[] es un arreglo
+    public int add(Object[] o) { //[] es un arreglo
         int r=0;
+        //Los de abajo debe ser exactamente con los que tiene la base en php
+        //Le mandamos la consulta sql
         String sql = "insert into cliente(Dni,Rs,Nombres,EdoCliente,ColCliente,CalleCliente,CpCliente,EmailCliente)values(?,?,?,?,?,?,?,?)";
-        //String sql = "insert into producto(IdCategoria,IdProv,Marca,Descripcion,Precio)values(?,?,?,?,?)";
         try {
+            // Conectamos con la base
             con=cn.Conectar();
-            ps=con.prepareStatement(sql);//la consulta sql
-            ps.setObject(1, o[0]);//Enviamos los datos posicion 0
+            //La consulta sql
+            ps=con.prepareStatement(sql);
+            //Enviamos los datos posicion 0
+            ps.setObject(1, o[0]);
             ps.setObject(2, o[1]);
             ps.setObject(3, o[2]);
             ps.setObject(4, o[3]);
@@ -152,7 +181,8 @@ public class ClienteDAO implements CRUD {
             ps.setObject(6, o[5]);
             ps.setObject(7, o[6]);
             ps.setObject(8, o[7]);
-            r=ps.executeUpdate();//actualizar
+            //Actualizamos
+            r=ps.executeUpdate();
         } catch (Exception e) {
         }
         return r;
@@ -161,12 +191,17 @@ public class ClienteDAO implements CRUD {
     @Override
     public int actualizar(Object[] o) {
        int r=0;
+       //IdCliente=? ,que cliente vamos actualizar
+        //Mandamos la consulta que vamos hacer
+        //Le mandamos la consulta sql
        String sql="update cliente set Dni=?,Rs=?,Nombres=?,EdoCliente=?,ColCliente=?,CalleCliente=?,CpCliente=?,EmailCliente=? where IdCliente=?";//IdCliente=? ,que cliente borraremos
         try {
+            // Conectamos con la base
             con=cn.Conectar();
+            //La consulta sql
             ps=con.prepareStatement(sql);
-            
-            ps.setObject(1, o[0]);//ps enviamos los datos
+            //ps enviamos los datos
+            ps.setObject(1, o[0]);
             ps.setObject(2, o[1]);
             ps.setObject(3, o[2]);
             ps.setObject(4, o[3]);
@@ -178,15 +213,21 @@ public class ClienteDAO implements CRUD {
             r=ps.executeUpdate();
         } catch (Exception e) {
         }
-        return r;// retorna la variable rspuesta
+        //Retorna la variable rspuesta
+        return r;
     }
     //Se usa en cliente.
     @Override
     public void eliminar(int id) {
-        String sql="delete from cliente where IdCliente=?";//Recibimos todo el objeto
+         //Recibimos todo el objeto a eliminar.
+        //Le mandamos la consulta sql
+        String sql="delete from cliente where IdCliente=?";
         try {
+            // Conectamos con la base
             con=cn.Conectar();
+            //La consulta sql
             ps=con.prepareStatement(sql);
+            // Buscamos el id del Cliente y lo eliminamos
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {

@@ -83,6 +83,12 @@ public class ProveForma extends javax.swing.JInternalFrame {
 
         jLabel2.setText("NOMBRE :");
 
+        txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomKeyTyped(evt);
+            }
+        });
+
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vendedor.png"))); // NOI18N
         btnAgregar.setText("AGREGAR");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,11 +129,34 @@ public class ProveForma extends javax.swing.JInternalFrame {
 
         jLabel9.setText("CP:");
 
+        txtCalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCalleKeyTyped(evt);
+            }
+        });
+
+        txtColonia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColoniaKeyTyped(evt);
+            }
+        });
+
+        txtCp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCpKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("EDO:");
 
         txtEdo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEdoActionPerformed(evt);
+            }
+        });
+        txtEdo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdoKeyTyped(evt);
             }
         });
 
@@ -136,6 +165,11 @@ public class ProveForma extends javax.swing.JInternalFrame {
         txtTel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelActionPerformed(evt);
+            }
+        });
+        txtTel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelKeyTyped(evt);
             }
         });
 
@@ -354,7 +388,6 @@ public class ProveForma extends javax.swing.JInternalFrame {
             txtColonia.setText(col);
             txtCp.setText(cp);
             txtTel.setText(tel);
-            //cboEstado.setSelectedItem(es);
         }
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -365,6 +398,60 @@ public class ProveForma extends javax.swing.JInternalFrame {
     private void txtTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelActionPerformed
+
+    private void txtNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNomKeyTyped
+
+    private void txtEdoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdoKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdoKeyTyped
+
+    private void txtColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColoniaKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtColoniaKeyTyped
+
+    private void txtCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalleKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan solo letras en el nombre
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCalleKeyTyped
+
+    private void txtTelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelKeyTyped
+
+    private void txtCpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCpKeyTyped
     //se usa
     void guardarDetalleTel() {
         String idc = provdao.IdProveedor();
@@ -385,7 +472,7 @@ public class ProveForma extends javax.swing.JInternalFrame {
     void agregar() {
         
         String nom = txtNom.getText();
-        String rs = txtRs.getText();//
+        String rs = txtRs.getText();
         String edo = txtEdo.getText();
         String calle = txtCalle.getText();
         String colonia = txtColonia.getText();
@@ -451,7 +538,6 @@ public class ProveForma extends javax.swing.JInternalFrame {
         txtCalle.setText("");
         txtCp.setText("");
         txtTel.setText("");
-        //cboEstado.setSelectedItem("SELECIONAR");
         txtRs.requestFocus();
     }
    //Se usa 

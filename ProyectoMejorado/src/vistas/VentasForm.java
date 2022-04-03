@@ -208,12 +208,22 @@ public class VentasForm extends javax.swing.JInternalFrame {
                 txtIdCActionPerformed(evt);
             }
         });
+        txtIdC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdCKeyTyped(evt);
+            }
+        });
 
         txtIdv.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtIdv.setForeground(new java.awt.Color(51, 51, 255));
         txtIdv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdvActionPerformed(evt);
+            }
+        });
+        txtIdv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdvKeyTyped(evt);
             }
         });
 
@@ -426,7 +436,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -513,6 +523,24 @@ public class VentasForm extends javax.swing.JInternalFrame {
         listar();
         fecha();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void txtIdCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdCKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdCKeyTyped
+
+    private void txtIdvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdvKeyTyped
+        // TODO add your handling code here:
+        //Validar que se metan numeros
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdvKeyTyped
     //Se usa
     void add() {
 
@@ -536,8 +564,8 @@ public class VentasForm extends javax.swing.JInternalFrame {
         ResultSet rs = null;
         String sql = "select idventa as idventa from venta order by idventa desc limit 1";
         try {
-            
-            String ruta = "C:\\Users\\hasti\\Desktop\\ESCOMCU\\Todo\\ProyectoBasesMejorado"; //Adaptar para la máquina en que se use
+             //Adaptar para la máquina en que se use
+            String ruta = "C:\\Users\\hasti\\Desktop\\ESCOMCU\\Todo\\ProyectoBasesMejorado";
             String rutaImagen = "C:\\Users\\hasti\\Desktop\\ESCOMCU\\Todo\\ProyectoBasesMejorado\\ProyectoMejorado\\src\\Img\\EncabezadoFactura.jpg";
             con = cn.Conectar();
             ps = con.prepareStatement(sql);
@@ -614,7 +642,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar el idcliente");
         } else {
             cl = cldDAO.listarIDs(id);
-            if (cl.getId() != 0) {//p=proveedor 
+            if (cl.getId() != 0) { 
                 txtCliente.setText(cl.getNombres());
 
             } else {
@@ -630,7 +658,7 @@ public class VentasForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar el idvendedor");
         } else {
             ven = listasDao.listarIDs(id);
-            if (ven.getId() != 0) {//p=proveedor 
+            if (ven.getId() != 0) { 
                 txtVendedor.setText(ven.getNom());
 
             } else {

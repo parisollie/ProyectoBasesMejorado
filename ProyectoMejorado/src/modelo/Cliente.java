@@ -1,4 +1,9 @@
-//Se usa
+
+/******************************************************************************
+  Tiene la misma lógica de constructores ,de getters y setters en todos los que
+  se parezcan a este.
+  ***************************************************************************** 
+*/
 package modelo;
 
 public class Cliente {
@@ -11,14 +16,10 @@ public class Cliente {
     String callecliente;
     String cp;
     String email;
-    //Constructor vacio.
+    //Agregamos un constructor vacío por defecto.
     public Cliente() {
     }
     //Constructor inicializando nuestras variables.
-
-    
-    //Agrego metodos getter and setters
-
     public Cliente(int id, int dni, String rs, String nombres, String edocliente, String colcliente, String callecliente, String cp, String email) {
         this.id = id;
         this.dni = dni;
@@ -30,7 +31,7 @@ public class Cliente {
         this.cp = cp;
         this.email = email;
     }
-
+    //Agrego metódos getter and setters
     public int getId() {
         return id;
     }
